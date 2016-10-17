@@ -1,6 +1,9 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Api from '../components/api.jsx';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 var App = React.createClass({
 	getInitialState:function(){
@@ -8,65 +11,39 @@ var App = React.createClass({
 			api:[
 			{
 				id:1,
-				name:"apiNo.1",
+				name:"firstApi",
 				parameter:["a1","b1","c1","d1"],
-				table:{
-					name:"",
-					parameter:"",
-					result:""
-				}
+				source:"http://172.22.136.192/api/ASHARES/CompanyDesc",
+				data:[[]]
 			},
 			{
 				id:2,
-				name:"apiNo.2",
-				parameter:["a2","b2","c2","d2","e3"],
-				table:{
-					name:"",
-					parameter:"",
-					result:""
-				}
-			},
-			{
-				id:3,
-				name:"apiNo.3",
-				parameter:["e3","f3"],
-				table:{
-					name:"",
-					parameter:"",
-					result:""
-				}
-			},
-			{
-				id:4,
-				name:"apiNo.4",
-				parameter:["a4","b4","c4","d4"],
-				table:{
-					name:"",
-					parameter:"",
-					result:""
-				}
-			},
-			{
-				id:5,
-				name:"apiNo.5",
-				parameter:["a5","b5","c5"],
-				table:{
-					name:"",
-					parameter:"",
-					result:""
-				}
+				name:"secondApi",
+				parameter:["a2","b2","c2","d2"],
+				source:"http://172.22.136.192/api/ASHARES/CompanyDesc",
+				data:[[]]
 			}
 			]
 		}
 	},
+	componentDidMount:function(){
+		var _this = this;
+		$.get(_this.props.source,function(result){
+			console.log(result);
+			_this.setState({
+				api:_this.state.api,
+				result.datatable
+			});
+		})
+	},
 	render:function(){
-		console.log(this.state.api);
+		console.log("app--------");
+		console.log(this.state);
 		return(
 			<MuiThemeProvider>
-				<Api api={this.state.api}/>
+				<Api api={this.state.api} apiDataTable={this.state.apiDataTable}/>
 			</MuiThemeProvider>
 			)
-			
 	}
 });
 
