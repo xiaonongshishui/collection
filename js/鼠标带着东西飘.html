@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css" media="screen">
+		div{
+			width:100px;
+			height:100px;
+			position:absolute;
+			background-color:red;
+		}
+	</style>
+</head>
+<body>
+<div></div>
+<div style="background:yellow"></div>
+<div></div>
+<div style="background:green"></div><div></div><div style="background:blue"></div><div></div><div style="background:pink"></div><div></div><div></div><div></div><div style="background:blue"></div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		// var div = document.getElementById("div");
+		// document.onmousemove = function(ev){
+		// 	var ev = ev || event;
+		// 	var pos = getPos(ev);
+		// 	div.style.top = (pos.x-100) + "px";
+		// 	div.style.left = (pos.y-100) + "px";
+		// }
+
+		var divs = document.getElementsByTagName("div");
+		document.onmousemove = function(ev){
+			var ev = ev || event;
+			divs[divs.length-1].style.top = getPos(ev).y + "px";
+			divs[divs.length-1].style.left = getPos(ev).x + "px";
+			for (var i = 0;i < divs.length-1;i++){
+					console.log(i);
+					console.log(divs[i].offsetLeft + "px");
+					divs[i].style.left = divs[i+1].offsetLeft + "px";
+					divs[i].style.top = divs[i+1].offsetTop + "px";
+			}
+			
+		}
+		
+	}
+     function getPos(ev){
+     	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+     	var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+     	var top = scrollTop + ev.clientY;
+     	var left = scrollLeft + ev.clientX;
+     	return {
+     		y:top,
+     		x:left
+     	}
+     } 
+
+</script>
+</html>
+
+
