@@ -14,7 +14,7 @@ var Parameter = React.createClass({
 				<TextField key={i} hintText="Hint Text" floatingLabelText={ele} style={{margin:"10px",marginTop:"0px"}}/>
 				)
 		})}
-		<div>
+		<div style={{float:"right"}}>
 		<RaisedButton label="submit" primary={true} />
 		</div>
 		</div>

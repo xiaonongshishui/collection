@@ -5,5 +5,5 @@ import App from './src/container/App.jsx';
 
 var root = document.getElementById('root');
 
-ReactDOM.render(<App /> , root);
+ReactDOM.render(<App/> , root);
 

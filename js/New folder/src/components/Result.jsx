@@ -3,22 +3,28 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 
 var Result = React.createClass({
   render:function(){
+    console.log("result");
+    console.log(this.props.apiDataTable[0]);
     return (
        <Table showCheckboxes={false}>
-        <TableHeader showCheckboxes={false}>
-          <TableRow>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>result</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableRowColumn>{this.props.apiActive.id}</TableRowColumn>
-            <TableRowColumn>{this.props.apiActive.name}</TableRowColumn>
-            <TableRowColumn>XXXX</TableRowColumn>
-          </TableRow>
-        </TableBody>
+         <TableBody showRowHover={true} displayRowCheckbox={false}> 
+         {
+          this.props.apiDataTable.map(function(ele,i){
+            
+            return (
+              <TableRow key={i}>
+              {
+                ele.map(function(ele,i){
+                    return <TableRowColumn key={i}>{ele}</TableRowColumn>
+                  })
+              }
+
+              </TableRow>
+              )
+          })
+         }
+        
+         </TableBody>
         </Table>
       );
   }
