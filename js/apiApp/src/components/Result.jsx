@@ -3,13 +3,14 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 
 var Result = React.createClass({
   render:function(){
-    console.log("result");
-    console.log(this.props.apiDataTable[0]);
+    console.log("result-------");
+    console.log(this.props.activeApi.data);
+    
     return (
        <Table showCheckboxes={false}>
          <TableBody showRowHover={true} displayRowCheckbox={false}> 
          {
-          this.props.apiDataTable.map(function(ele,i){
+          this.props.activeApi.data.map(function(ele,i){
             
             return (
               <TableRow key={i}>
